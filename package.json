@@ -1,0 +1,24 @@
+{
+  "name": "@funcmatic/router",
+  "version": "1.0.0-alpha",
+  "description": "A simple server-side URL router for AWS Lambda that does not depend on Node HTTP request/response.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [ "aws", "lambda", "aws-lambda", "nodejs", "serverless" ],
+  "author": "Daniel Jhin Yoo <danieljyoo@funcmatic.com> (https://github.com/danieljyoo)",
+  "license": "MIT",
+  "homepage": "https://github.com/getfuncmatic/router",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getfuncmatic/router.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^21.2.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
