@@ -2,7 +2,7 @@ var Router = require('../lib/router')
 
 //expect(houseForSale).toMatchObject(desiredHouse);
 describe('Router', () => {
-  it ('create a new router', async done => {
+  it ('create a new router', async () => {
     var options = { }
     var router = new Router(options)
     router.get('/hello/:userid', (ctx) => {
@@ -21,9 +21,8 @@ describe('Router', () => {
         'userid': '123'
       }
     })
-    done()
   })
-  it ('should return and unhandled error if no matching route', async done => {
+  it ('should return and unhandled error if no matching route', async () => {
     var options = { }
     var router = new Router(options)
     router.get('/hello/:userid', (ctx) => {
@@ -31,7 +30,6 @@ describe('Router', () => {
     })
     var res = await router.dispatch('GET', '/', { })
     expect(res instanceof Error).toBe(true)
-    done()
   })
 }) 
 
