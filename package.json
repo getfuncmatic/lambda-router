@@ -6,7 +6,13 @@
   "scripts": {
     "test": "jest"
   },
-  "keywords": [ "aws", "lambda", "aws-lambda", "nodejs", "serverless" ],
+  "keywords": [
+    "aws",
+    "lambda",
+    "aws-lambda",
+    "nodejs",
+    "serverless"
+  ],
   "author": "Daniel Jhin Yoo <danieljyoo@gmail.com> (https://github.com/danieljyoo)",
   "license": "MIT",
   "homepage": "https://github.com/getfuncmatic/lambda-router",
@@ -14,7 +20,9 @@
     "type": "git",
     "url": "https://github.com/getfuncmatic/lambda-router.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "path-to-regexp": "^2.2.0"
+  },
   "devDependencies": {
     "jest": "^21.2.1"
   },
