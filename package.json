@@ -1,6 +1,6 @@
 {
   "name": "@funcmatic/lambda-router",
-  "version": "2.0.0-alpha",
+  "version": "2.1.0-alpha",
   "description": "A simple server-side URL router for AWS Lambda that does not depend on Node HTTP request/response.",
   "main": "index.js",
   "scripts": {
