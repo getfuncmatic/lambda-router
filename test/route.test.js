@@ -50,7 +50,7 @@ app.get(/.*fly$/, function (req, res) {
   res.send('/.*fly$/')
 })
 */
-describe('Route matching', () => {
+describe('Express-style route matching', () => {
   // Tests taken from Express documentation at:
   // https://expressjs.com/en/guide/routing.html
   it ('should match root route', () => {
@@ -153,6 +153,22 @@ describe('Route matching', () => {
     })
     expect(route.match('GET', '/test')).toBeFalsy()
   })
+  // additional tests from Express-style routing
+  it ('should match all http methods', () => {
+    var route = new Route('ALL', '/')
+    expect(route.match('GET', '/')).toBeTruthy()
+    expect(route.match('POST', '/')).toBeTruthy()
+  }) 
+  it ('should match any path', () => {
+    var route = new Route('GET', '*')
+    expect(route.match('GET', '/')).toBeTruthy()
+    expect(route.match('GET', '/abc')).toBeTruthy()
+    expect(route.match('GET', '/abc/123')).toBeTruthy()
+  })
+})
+
+describe('Additional routing matching', () => {
+
 })
 
 describe('Route handlers', () => {
