@@ -80,6 +80,38 @@ describe('Router', () => {
       c: 'router'
     })
   })
+  it ('should throw error if no method is provided on the event', async () => {
+    var router = app.create()
+    router.get('/', (event, context) => { return { hello: 'world' } })
+    var handler = router.handler()
+    var thrownError = null
+    try {
+      var res = await handler({ }, { })
+    } catch (err) {
+      thrownError = err
+    }
+    expect(thrownError).toBeTruthy()
+    expect(thrownError.message).toMatch(/event.method must be provided/)
+  })
+  it ('should set the getPathParam function on the context', async () => {
+    var options = { }
+    var router = app.create(options)
+    router.get('/hello/:userid', (event, context) => {
+      return { 'getPathParam': context.getPathParam('userid') }
+    })
+    var event = {
+      method: 'GET',
+      path: '/hello/123'
+    }
+    var context = {
+
+    }
+    var handler = router.handler()
+    var res = await handler(event, context)
+    expect(res).toMatchObject({
+      'getPathParam': '123'
+    })
+  })
 }) 
 
 
