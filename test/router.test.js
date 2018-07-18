@@ -5,27 +5,25 @@ describe('Router', () => {
   it ('create a new router', async () => {
     var options = { }
     var router = app.create(options)
-    router.get('/hello/:userid', (event, context) => {
+    router.get('/hello/:userid', (event, context, { params }) => {
       return { 
         'hello': 'world',
         event, 
-        context
+        context,
+        params
       }
     })
     var event = {
        method: 'GET', 
        path: '/hello/123'
     }
-    var context = { 'foo': 'bar' }
+    var context = { }
+    var plugins = { }
     var handler = router.handler()
-    var res = await handler(event, context)
-    expect(res.context).toMatchObject({
-      'foo': 'bar',
-      'router': { 
-        'params': {
-          'userid': '123'
-        }
-      }
+    var res = await handler(event, context, plugins)
+    console.log('res', res)
+    expect(res.params).toMatchObject({
+      'userid': '123'
     })
   })
   it ('should throw a no matching route error if no matching route', async () => {
@@ -93,25 +91,25 @@ describe('Router', () => {
     expect(thrownError).toBeTruthy()
     expect(thrownError.message).toMatch(/event.method must be provided/)
   })
-  it ('should set the getPathParam function on the context', async () => {
-    var options = { }
-    var router = app.create(options)
-    router.get('/hello/:userid', (event, context) => {
-      return { 'getPathParam': context.getPathParam('userid') }
-    })
-    var event = {
-      method: 'GET',
-      path: '/hello/123'
-    }
-    var context = {
+  // it ('should set the getPathParam function on the context', async () => {
+  //   var options = { }
+  //   var router = app.create(options)
+  //   router.get('/hello/:userid', (event, context) => {
+  //     return { 'getPathParam': context.getPathParam('userid') }
+  //   })
+  //   var event = {
+  //     method: 'GET',
+  //     path: '/hello/123'
+  //   }
+  //   var context = {
 
-    }
-    var handler = router.handler()
-    var res = await handler(event, context)
-    expect(res).toMatchObject({
-      'getPathParam': '123'
-    })
-  })
+  //   }
+  //   var handler = router.handler()
+  //   var res = await handler(event, context)
+  //   expect(res).toMatchObject({
+  //     'getPathParam': '123'
+  //   })
+  // })
 }) 
 
 
