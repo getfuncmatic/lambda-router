@@ -14,8 +14,10 @@ describe('Router', () => {
       }
     })
     var event = {
-       method: 'GET', 
-       path: '/hello/123'
+       httpMethod: 'GET', 
+       pathParameters: {
+         proxy: 'hello/123'
+       }
     }
     var context = { }
     var plugins = { }
@@ -33,8 +35,7 @@ describe('Router', () => {
       return { 'hello': 'world' }
     })
     var event = {
-      method: 'GET',
-      path: '/'
+      httpMethod: 'GET'
     }
     var handler = router.handler()
     var thrownError = null
@@ -60,8 +61,7 @@ describe('Router', () => {
       return context
     })
     var event = {
-      method: 'GET',
-      path: '/'
+      method: 'GET'
     }
     var handlerContext = {
       a: 'handler',
